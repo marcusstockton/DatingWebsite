@@ -1,0 +1,22 @@
+{% extends 'base/index.html' %}
+{% block title %}
+    {{ profile.first_name }} {{ profile.last_name }}
+{% endblock %}
+{% block content %}
+
+<!--TODO...STICK THESE IN A CAROUSEL-->
+{% for img in images %}
+  <img src="{{img.image.url}}">
+{% endfor %}
+
+
+
+  <img src="{{profile.profile_pic.url}}" class="card-img-top img-fluid img-thumbnail" width="100%" alt="{{profile.profile_pic}}">
+  <div>
+    <h5 class="card-title">{{ profile.title }}</h5>
+    <p class="card-text">{{ profile.description }}</p>
+  </div>
+
+  <a href="{{request.META.HTTP_REFERER}}" class="btn btn-link">Go back</a>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base/index.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<form method="GET">
+    {{ filter.form | crispy }}
+    <button type="submit">Search</button>
+</form>
+
+
+{% if latest_profiles %}
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for profile in filter.qs %}
+    <div class="card" style="width: 14rem;">
+        <img src="{{profile.profile_pic.url}}" class="card-img-top img-fluid img-thumbnail" width="100%"
+             alt="{{profile.profile_pic}}">
+        <div class="card-body">
+            <h5 class="card-title">{{ profile.title }}</h5>
+            <small>{{profile.age}} Year Old {{profile.get_gender_display}}</small>
+            <p class="card-text">{{ profile.description | truncatechars:150 }}</p>
+        </div>
+        <div class="card-footer">
+            <a href="{% url 'biography:detail' profile.pk %}" class="btn btn-success btn-sm" role="button">See More</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% else %}
+<p>No profiles are available.</p>
+{% endif %}
+{% endblock %}
