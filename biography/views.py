@@ -36,3 +36,12 @@ def user_create(request):
         "form": form,
     }
     return render(request, "create.html", context)
+
+
+# keeping this and detail in, as i'll likely want less info on detail, more in this..
+def account_profile(request):
+    user_id = request.user.id
+    profile = get_object_or_404(Profile, pk=user_id)
+    images = Images.objects.filter(profile_id=user_id)
+
+    return render(request, 'biography/my_account.html', {'profile': profile, "images": images})
