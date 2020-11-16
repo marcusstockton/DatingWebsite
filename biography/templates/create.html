@@ -6,8 +6,9 @@
 {% block content %}
 <div class="col-sm-6 offset-sm-3">
     <form method="POST" class="form-group">
-	{% csrf_token %}
-	{{ form|crispy }}
+		{% csrf_token %}
+		{{ form | crispy }}
+		{{ profile | crispy }}
 	<button type="submit" class="btn btn-success">Register</button>
     </form>
 </div>

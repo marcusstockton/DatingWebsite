@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView
 
-from .forms import RegisterForm
+from .forms import RegisterForm, ProfileForm
 from .models import Profile, Images
 from .filters import ProfileFilter
 
@@ -27,13 +27,18 @@ def detail(request, pk):
 
 def user_create(request):
     form = RegisterForm(request.POST or None, request.FILES or None)
-    if form.is_valid():
+    profile = ProfileForm(request.POST or None, request.FILES or None)
+    if form.is_valid() and profile.is_valid():
         user = form.save()
+        profile = profile.save(commit=False)
+        profile.user = user
+        profile.save()
         auth_user = authenticate(username=user.username, password=user.password)
         login(request, user)
         return redirect("biography:index")
     context = {
         "form": form,
+        "profile": profile
     }
     return render(request, "create.html", context)
 
