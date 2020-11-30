@@ -1,7 +1,7 @@
 Superuser:
 marcus_stockton@hotmail.co.uk
 
-test@test.com | testWoman1 | testMolly | testMomoa
+test@test.com | testWoman1 | testMolly | testMomoa | testRegister
 P@55w0rd
 
 

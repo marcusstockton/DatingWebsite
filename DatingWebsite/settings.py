@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # 3rd Party:
     "crispy_forms",
     'django_filters',
+    'formtools',
 
     # App
     'biography.apps.BiographyConfig',

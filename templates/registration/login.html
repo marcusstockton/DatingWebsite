@@ -16,7 +16,7 @@
     {% endif %}
   {% endif %}
   <div class="col-sm-6 offset-sm-3">
-    <form method="post" action="{% url 'login' %}" class="form-group">
+    <form method="post" action="{% url 'login' %}" class="form-group" novalidate>
       {% csrf_token %}
         {{form | crispy}}
       <input type="submit" class="btn btn-success" value="login" />
