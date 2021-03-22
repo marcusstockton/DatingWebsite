@@ -3,9 +3,32 @@
 
 {% block content %}
 
-<h1>Welcome {{profile.first_name}} {{profile.last_name}}</h1>
-<p>todo: this whole page lol</p>
-{{profile}}
-{{images}}
+<div class="row">
+    <h1>Welcome {{profile.first_name}} {{profile.last_name}}</h1>
+    <p>todo: this whole page lol</p>
+
+    <h5>{{profile.title}}</h5>
+    <p>{{profile.description}}</p>
+</div>
+
+
+
+<div class="row">
+    <div class="col-sm-6">
+        {% if images %}
+            {% for image in images %}
+                 <img src="{{image.image.url}}" alt="{{image}}"></a>
+            {% endfor %}
+        {% else %}
+            <p>No images uploaded.</p>
+        {% endif %}
+    </div>
+
+</div>
+
+<div class="row">
+    <a href="{% url 'biography:edit-my-profile' profile.pk %}">Edit</a>
+</div>
+
 
 {% endblock %}

@@ -3,6 +3,7 @@ from datetime import datetime
 
 from django.conf import settings
 from django.db import models
+
 from shared.enums import Title, Gender, BodyType
 
 
@@ -29,6 +30,7 @@ class Profile(models.Model):
     body_shape = models.CharField(max_length=3, choices=BodyType.choices())
     title = models.CharField(max_length=200, help_text="A title to make you stand out.")
     description = models.CharField(max_length=2000, help_text="Describe yourself.")
+    interests = models.ManyToManyField('Interest')
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now=True)
 
@@ -65,3 +67,8 @@ class Images(models.Model):
 
     def __str__(self):
         return "{} {} {}".format(os.path.basename(self.image.file.name), self.profile.first_name, self.profile.last_name)
+
+
+class Interest(models.Model):
+    title = models.CharField(max_length=250)
+    active = models.BooleanField(default=True)

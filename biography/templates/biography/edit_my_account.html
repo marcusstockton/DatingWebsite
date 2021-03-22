@@ -1,0 +1,17 @@
+{% extends "base/index.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block content %}
+<div>
+	<h1>Form</h1>
+	<form method="POST">
+		{% csrf_token %}
+		{{ form.media }}
+		{{ form|crispy }}
+		<input type="submit" class="btn btn-primary" value="Update My Account"/>
+		<a href="{% url 'biography:detail' profile.pk %}" class="btn btn-default">Go Back</a>
+	</form>
+</div>
+{% endblock content %}
